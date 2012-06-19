@@ -1,16 +1,12 @@
-#ifndef _CTEXT_H
-#define _CTEXT_H
-using namespace std;
+#ifndef TEXT_H_
+#define TEXT_H_
 
 class CText
 {
 public:
-
 	string welcome_text();
 	string info_text();
-	string player_player();
-	string player_computer();
-
+	string singleplayer();
+	string multiplayer();
 };
-
 #endif

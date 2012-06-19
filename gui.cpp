@@ -5,63 +5,136 @@
 #include <cstdlib>
 using namespace std;
 #include "text.h"
-#include "code.h"
+#include "processing.h"
+#include "player.h"
 #include "gui.h"
+#include "rangeexception.h"
+#include "letterexception.h"
 
 void CGui::application()
 {
-	CText t1;
-	CCode input;
-	char run,run2;
-	int wahl;
-
-	cout << t1.welcome_text() << endl;
+	CText text;
+	CProcessing process;
+	CPlayer player1;
+	CPlayer player2;
+	CPlayer computer;
+	char run,run2, cache;
+	int choice, counter, counter2;
 
 	do
 	{
 		run = 's';
+		cout << text.welcome_text() << endl;
 		cout << "\nYour choice: ";
-		cin >> wahl;
-		if(wahl == 1)
+		cin >> choice;
+		if(choice == 1)
 		{
 			run = 'r';
-			cout << "You have choosen: (1)\n" << endl;
-			cout << t1.player_computer() << endl;
-			input.set_computer_hidden();
+			cout << "You have chosen: (1)\n" << endl;
+			cout << text.singleplayer() << endl;
+			computer.set_code_generator();
+			counter2=1;
 			do
 			{	
 				run2 = 's';
-				input.set_player1_current();
-				input.compare_computer_player(run2);
-				cout << input.p1c_string() << endl;
-				cout << input.ca_string() << endl;
+				try 
+				{
+					player1.set_attempt(counter2, choice,cache);
+				}
+				catch(CRangeException &err)
+				{
+					run2 = 'r';
+					cout << "\nError code: " << err.what() << endl;
+				}
+				if(run2 == 's')
+				{
+				process.compare_computer_player(player1, computer ,run2);
+				cout << process.p1c_string(player1) << endl;
+				cout << process.ca_string() << endl;
+				}
 
 			}while(run2 == 'r');
 		}
-		else if(wahl == 2)
-		{
+		else if(choice == 2)
+		{	
+			counter=1;
 			run = 'r';
-			cout << "You have choosen: (2)\n" << endl;
-			cout << t1.player_player() << endl;
-			input.set_player1_hidden();
-			input.set_player2_hidden();
+			cout << "You have chosen: (2)\n" << endl;
+			cout << text.multiplayer() << endl;
+
+			do
+			{
+				try 
+					{
+						player1.set_code(counter,cache);
+					}
+			
+				catch(CRangeException &err)
+					{
+						run2 = 'r';
+						cout << "\nError code: " << err.what() << endl;
+					}
+			}while(cache == 'r');
+
+
+			do
+			{
+				try 
+					{
+						player2.set_code(counter,cache);
+					}
+			
+				catch(CRangeException &err)
+					{
+						run2 = 'r';
+						cout << "\nError code: " << err.what() << endl;
+					}
+			}while(cache == 'r');
 
 			do
 			{	
+				counter2=1;
 				run2 = 's';
-				input.set_player1_current();
-				cout << input.p1c_string() << endl;
-				input.compare_player1(run2);
-				cout << input.ca_string() << endl;
-				if( run2=='s' )
+
+
+				do
 				{
+					try 
+					{
+						player1.set_attempt(counter2, choice,cache);
+					}
+					catch(CRangeException &err)
+					{
+						run2 = 'r';
+						cout << "\nError code: " << err.what() << endl;
+					}
+				}while(cache == 'r');
+				
+
+				cout << process.p1c_string(player1) << endl;
+				process.compare_player1(player1, player2 ,run2);
+				cout << process.ca_string() << endl;
+				if( run2=='s' )
+				{	
 					break;
 				}
 
-				input.set_player2_current();
-				cout << input.p2c_string() << endl;
-				input.compare_player2(run2);
-				cout << input.ca_string() << endl;
+				do
+				{
+					try 
+					{
+						player2.set_attempt(counter2, choice,cache);
+					}
+					catch(CRangeException &err)
+					{
+						run2 = 'r';
+						cout << "\nError code: " << err.what() << endl;
+					}
+				}while(cache == 'r');
+
+				cout << process.p2c_string(player2) << endl;
+				process.compare_player2(player1, player2,run2);
+				cout << process.ca_string() << endl;
 				if( run2=='s' )
 				{
 					break;
@@ -69,11 +142,11 @@ void CGui::application()
 				
 			}while(run2 == 'r');
 		}
-		else if(wahl == 3)
+		else if(choice == 3)
 		{
 			run = 'r';
-			cout << "You have choosen: (3)\n" << endl;
-			cout << t1.info_text() << endl;
+			cout << "You have chosen: (3)\n" << endl;
+			cout << text.info_text() << endl;
 		}
 		else
 		{
