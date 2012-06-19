@@ -9,7 +9,7 @@ using namespace std;
 #include "player.h"
 #include "gui.h"
 #include "rangeexception.h"
-#include "letterexception.h"
+
 
 void CGui::application()
 {

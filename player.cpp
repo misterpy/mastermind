@@ -6,7 +6,7 @@ using namespace std;
 #include "processing.h"
 #include "player.h"
 #include "rangeexception.h"
-#include "letterexception.h"
+
 
 
 void CPlayer::set_code_generator()
