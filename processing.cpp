@@ -34,7 +34,7 @@ void CProcessing::compare_computer_player(CPlayer p1, CPlayer pc, char &state)
 
 void CProcessing::compare_player1(CPlayer p1, CPlayer p2, char &state)
 {
-	for(int n=0; n<4 ;n++)
+	for(int n=0; n<4; n++)
 	{
 		if(p1.attempt[n] == p2.code[n])
 		{
@@ -48,7 +48,7 @@ void CProcessing::compare_player1(CPlayer p1, CPlayer p2, char &state)
 
 	if((compare_array[0] == 1) && (compare_array[1] == 1) && (compare_array[2] == 1) && (compare_array[3] == 1))
 	{
-		cout << "Player 1 wins!" << endl;
+		cout << "Player 1 wins!\n" << endl;
 		state='s';
 	}
 	else
@@ -59,7 +59,7 @@ void CProcessing::compare_player1(CPlayer p1, CPlayer p2, char &state)
 
 void CProcessing::compare_player2(CPlayer p1, CPlayer p2, char &state)
 {
-	for(int n=0; n<4 ;n++)
+	for(int n=0; n<4; n++)
 	{
 		if(p2.attempt[n] == p1.code[n])
 		{
@@ -73,7 +73,7 @@ void CProcessing::compare_player2(CPlayer p1, CPlayer p2, char &state)
 
 	if((compare_array[0] == 1) && (compare_array[1] == 1) && (compare_array[2] == 1) && (compare_array[3] == 1))
 	{
-		cout << "Player 2 wins!" << endl;
+		cout << "Player 2 wins!\n" << endl;
 		state='s';
 	}
 	else
