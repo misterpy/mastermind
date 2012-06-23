@@ -2,6 +2,7 @@
 #include <sstream>
 #include <ctime>
 #include <cstdlib>
+#include <limits>
 using namespace std;
 #include "processing.h"
 #include "player.h"
@@ -11,14 +12,14 @@ using namespace std;
 
 void CPlayer::set_code_generator()
 {
-	srand ( time(NULL) );
+	srand (time(NULL));
 	for(int i=0; i<4; i++)
 	{
 		code[i] = rand() % 6 + 1;
 	}
 }
 
-void CPlayer::set_code(int &ccounter,char &ccache)
+void CPlayer::set_code(int &ccounter, char &ccache)
 {
 	ccache='r';
 	cout << "Player " << ccounter << " INITIAL code(press ENTER after each number): \n";
@@ -26,8 +27,16 @@ void CPlayer::set_code(int &ccounter,char &ccache)
 	for(int i = 0; i < 4 ; i++)
 	{
 		cin >> code[i];
-		if (code[i]<=0 || code[i]>5)
-			throw CRangeException();
+
+		if (cin.fail() )
+			{
+				cout << "Oops, please don't enter chars, try again with a digit between 1-5\n";
+				cin.clear();
+				cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n' );
+				--i;
+			}
+		else if (code[i]<=0 || code[i]>5)
+				throw CRangeException();
 
 	}
 
@@ -37,7 +46,7 @@ void CPlayer::set_code(int &ccounter,char &ccache)
 	ccache='s';
 }
 
-void CPlayer::set_attempt(int &ccounter2,int &choice, char &ccache)
+void CPlayer::set_attempt(int &ccounter2, int &choice, char &ccache)
 {
 	ccache='r';
 	cout << "Player " << ccounter2 << " code(press ENTER after each number): \n";
@@ -45,8 +54,17 @@ void CPlayer::set_attempt(int &ccounter2,int &choice, char &ccache)
 	for(int i = 0; i < 4 ; i++)
 	{
 		cin >> attempt[i];
-		if (attempt[i]<=0 || attempt[i]>5)
-			throw CRangeException();
+
+		if (cin.fail() )
+			{
+				cout << "Oops, please don't enter chars, try again with a digit between 1-5\n";
+				cin.clear();
+				cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n' );
+				--i;
+			}
+		else if (attempt[i]<=0 || attempt[i]>5)
+				throw CRangeException();
+
 
 	}
 
