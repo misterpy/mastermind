@@ -1,11 +1,13 @@
 #ifndef PROCESSING_H_
 #define PROCESSING_H_
 
+class CPlayer;
+
 class CProcessing
 {
-public:
+private:
 	int compare_array[4];
-	friend class CPlayer;
+public:
 	void compare_computer_player(CPlayer p1, CPlayer pc, char &state);
 	void compare_player1(CPlayer p1, CPlayer p2, char &state);
 	void compare_player2(CPlayer p1, CPlayer p2, char &state);
