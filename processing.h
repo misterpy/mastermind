@@ -17,7 +17,7 @@ public:
 	void compare_computer_player(CPlayer p1, CPlayer pc, char &state);		//Funktion vergleicht den Attempt des Players mit dem Code des Computers (Singleplayer)
 	void compare_player1(CPlayer p1, CPlayer p2, char &state);				//Funktion vergleicht den Attempt von Player 1 mit dem Code von Player 2 (Multiplayer)
 	void compare_player2(CPlayer p1, CPlayer p2, char &state);				//Funktion vergleicht den Attempt von Player 2 mit dem Code von Player 1 (Multiplayer)
-	string pattempt_string(CPlayer p1);										//Funktion die den Attempt der Player 1 & 2 ausgibt
+	string pattempt_string(CPlayer p);										//Funktion die den Attempt der Player 1 & 2 ausgibt
 	string result_string();													//Funktion die den Spielstand ausgibt
 };
 #endif
