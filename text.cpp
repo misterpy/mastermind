@@ -3,10 +3,14 @@
 using namespace std;
 #include "text.h"
 
+/* Nachfolgende CText-Memberfunktionen definieren den auszugebenden Text.
+ * Diese Texte werden in die Variable stream vom Typ stringstream geladen und dann zurückgegeben.
+ */
+
 string CText::welcome_text()
 {
 	stringstream stream;
-	stream << "\tWelcome to Mastermind! "
+	stream << "Welcome to Mastermind! "
 	       << "Are you ready for the game? Sure you are. =)" << endl;
 	stream << "All you need to do in this game is break the code!" << endl;
 	stream << "\nFor those who haven't played before, choose more info. (3)" << endl;
